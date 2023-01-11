@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 
+app.use(express.static('public'));
+
 const PORT = process.env.PORT || 3000;
 
 const envelopeArray = [];
@@ -17,7 +19,7 @@ app.listen(PORT, () => {
 })
 
 app.get('/', (req, res, next) => {
-    res.sendfile('index.html');
+    res.sendFile('index.html', {root: __dirname});
 })
 
 function checkParams (req, res, next) {
