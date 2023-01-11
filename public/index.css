@@ -2,3 +2,10 @@
 * {
     font-family: Inter, style-sans;
 }
+
+heading {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+}
+
