@@ -1,12 +1,9 @@
 const envelopeForm = document.querySelector('form');
 
-envelopeForm.addEventListener('submit', (e) => {
-    e.preventDefault;
-    new FormData(envelopeForm);
-});
+envelopeForm.addEventListener('submit', envelopeFormSubmitted);
 
 async function envelopeFormSubmitted(event) {
-    event.preventDefault;
-    const formData = new FormData(envelopeForm);
+    event.preventDefault();
+    const formData = Object.fromEntries(new FormData(envelopeForm).entries());
     console.log(formData);
 }
