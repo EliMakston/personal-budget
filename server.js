@@ -11,6 +11,7 @@ const envelopeArray = [];
 let totalBudget = 5000;
 let budgetLeft = 5000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
@@ -23,11 +24,23 @@ app.get('/', (req, res, next) => {
 })
 
 function checkParams (req, res, next) {
+    let categoryParam;
+    let budgetParam;
+    let isBody = false;
     if (!req.query.hasOwnProperty('category') || !req.query.hasOwnProperty('budget')) {
-        res.status(400).send('Missing parameter');
+        if (!req.body.hasOwnProperty('category') || !req.body.hasOwnProperty('budget')) {
+            res.status(400).send('Missing parameter');
+        } else {
+            isBody = true;
+        }
     }
-    const categoryParam = req.query.category;
-    const budgetParam = Number(req.query.budget);
+    if (!isBody) {
+        categoryParam = req.query.category;
+        budgetParam = Number(req.query.budget);
+    } else {
+        categoryParam = req.body.category;
+        budgetParam = Number(req.body.budget);
+    }
     if (categoryParam.length === 0 || budgetParam.length === 0) {
         res.status(400).send('Missing parameter');
     } else {
