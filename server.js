@@ -6,7 +6,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const envelopeArray = [];
-let totalBudget;
+let totalBudget = 5000;
+let budgetLeft = 5000;
 
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
@@ -20,8 +21,23 @@ app.get('/', (req, res, next) => {
 })
 
 function checkParams (req, res, next) {
+    if (!req.query.hasOwnProperty('category') || !req.query.hasOwnProperty('budget')) {
+        res.status(400).send('Missing parameter');
+    }
     const categoryParam = req.query.category;
-    next();
+    const budgetParam = Number(req.query.budget);
+    if (categoryParam.length === 0 || budgetParam.length === 0) {
+        res.status(400).send('Missing parameter');
+    } else {
+        if (budgetLeft >= budgetParam) {
+            req.category = categoryParam;
+            req.budget = budgetParam;
+            budgetLeft -= budgetParam;
+            next();
+        } else {
+            res.status(400).send('Budget overflow');
+        }
+    }
 }
 
 //TO DO check for valid inputs and make sure no over budget
