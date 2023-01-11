@@ -70,3 +70,24 @@ app.get('/envelope', (req, res, next) => {
 app.get('/envelope/:id', checkIndex, (req, res, next) => {
     res.status(200).send(envelopeArray[req.index]);
 });
+
+app.put('/envelope/:id', checkIndex, (req, res, next) => {
+    const updateEnvelope = envelopeArray[req.index];
+    if (!req.query.hasOwnProperty('budget') && !req.query.hasOwnProperty('category')) {
+        res.status(400).send('Missing budget or category');
+    }
+    if (req.query.hasOwnProperty('budget')) {
+        const newBudget = req.query.budget;
+        if (newBudget >= 0) {
+            updateEnvelope.budget = newBudget;
+        }
+    }
+    if (req.query.hasOwnProperty('category')) {
+        const newCategory = req.query.category;
+        if (newCategory.length > 0) {
+            updateEnvelope.category = newCategory;
+        }
+    }
+    envelopeArray[req.index] = updateEnvelope;
+    res.status(200).send(envelopeArray[req.index]);
+});
