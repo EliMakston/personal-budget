@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 const PORT = process.env.PORT || 3000;
 
