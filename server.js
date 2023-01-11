@@ -42,7 +42,16 @@ function checkParams (req, res, next) {
 
 function checkIndex(req, res, next) {
     const currentId = Number(req.params.id);
-    const envelopeIndex = envelopeArray.findIndex((envelope) => {return Number(envelope.id) === currentId})
+    if (req.params.hasOwnProperty('id2')) {
+        const currentId2 = Number(req.params.id2);
+        const envelopeIndex2 = envelopeArray.findIndex((envelope) => {return Number(envelope.id) === currentId2});
+        if (envelopeIndex2 === -1) {
+            res.status(404).send('Envelope not found');
+        } else {
+            req.index2 = envelopeIndex2;
+        }
+    }
+    const envelopeIndex = envelopeArray.findIndex((envelope) => {return Number(envelope.id) === currentId});
     if (envelopeIndex === -1) {
         res.status(404).send('Envelope not found');
     } else {
@@ -93,4 +102,15 @@ app.put('/envelope/:id', checkIndex, (req, res, next) => {
 app.delete('/envelope/:id', checkIndex, (req, res, next) => {
     envelopeArray.splice(req.index, 1);
     res.status(204).send(envelopeArray);
+});
+
+app.put('/envelope/:id/:id2', checkIndex, (req, res, next) => {
+    const budgetToMove = envelopeArray[req.index].budget;
+    const newEnvelope1 = envelopeArray[req.index];
+    newEnvelope1.budget -= budgetToMove;
+    const newEnvelope2 = envelopeArray[req.index2];
+    newEnvelope2.budget += budgetToMove;
+    envelopeArray[req.index] = newEnvelope1;
+    envelopeArray[req.index2] = newEnvelope2;
+    res.status(200).send(envelopeArray[req.index2]);
 });
