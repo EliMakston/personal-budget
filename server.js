@@ -56,8 +56,8 @@ function checkIndex(req, res, next) {
 app.post('/envelope', checkParams, (req, res, next) => {
     const newEnvelope = {
         id: envelopeArray.length + 1,
-        category: req.query.category,
-        budget: req.query.budget
+        category: req.category,
+        budget: req.budget
     }
     envelopeArray.push(newEnvelope);
     res.status(201).send(newEnvelope);
@@ -79,7 +79,7 @@ app.put('/envelope/:id', checkIndex, (req, res, next) => {
     if (req.query.hasOwnProperty('budget')) {
         const newBudget = req.query.budget;
         if (newBudget >= 0) {
-            updateEnvelope.budget = newBudget;
+            updateEnvelope.budget = Number(newBudget);
         }
     }
     if (req.query.hasOwnProperty('category')) {
@@ -90,4 +90,9 @@ app.put('/envelope/:id', checkIndex, (req, res, next) => {
     }
     envelopeArray[req.index] = updateEnvelope;
     res.status(200).send(envelopeArray[req.index]);
+});
+
+app.delete('/envelope/:id', checkIndex, (req, res, next) => {
+    envelopeArray.splice(req.index, 1);
+    res.status(204).send(envelopeArray);
 });
