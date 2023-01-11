@@ -43,8 +43,6 @@ function checkParams (req, res, next) {
 function checkIndex(req, res, next) {
     const currentId = Number(req.params.id);
     const envelopeIndex = envelopeArray.findIndex((envelope) => {return Number(envelope.id) === currentId})
-    console.log(currentId);
-    console.log(envelopeIndex);
     if (envelopeIndex === -1) {
         res.status(404).send('Envelope not found');
     } else {
