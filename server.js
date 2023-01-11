@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 })
 
 app.get('/', (req, res, next) => {
-    res.status(200).send('Hello, World')
+    res.sendfile('index.html');
 })
 
 function checkParams (req, res, next) {
