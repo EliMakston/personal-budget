@@ -19,12 +19,17 @@ app.get('/', (req, res, next) => {
     res.status(200).send('Hello, World')
 })
 
+function checkParams (req, res, next) {
+    const categoryParam = req.query.category;
+    next();
+}
+
 //TO DO check for valid inputs and make sure no over budget
-app.post('/envelope', (req, res, next) => {
+app.post('/envelope', checkParams, (req, res, next) => {
     const newEnvelope = {
         id: envelopeArray.length + 1,
-        category: req.params.category,
-        budget: req.params.budget
+        category: req.query.category,
+        budget: req.query.budget
     }
     envelopeArray.push(newEnvelope);
     res.status(201).send(newEnvelope);
