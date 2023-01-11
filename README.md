@@ -1,6 +1,6 @@
 <h1>This is the personal budget project for Codecademy!</h1>
 <h2>Commands</h2>
-<h3>GET '/envelops'<h3>
+<h3>GET '/envelops'</h3>
     <p>This gets all the envelopes from the database</p>
 <h3>GET '/envelops/:id'</h3>
     <p>This gets the envelope with the corresponsing id number</p>
