@@ -40,6 +40,19 @@ function checkParams (req, res, next) {
     }
 }
 
+function checkIndex(req, res, next) {
+    const currentId = Number(req.params.id);
+    const envelopeIndex = envelopeArray.findIndex((envelope) => {
+        envelope.id = currentId;
+    })
+    if (envelopeIndex === -1) {
+        res.status(404).send('Envelope not found');
+    } else {
+        req.index = envelopeIndex;
+        next();
+    }
+}
+
 app.post('/envelope', checkParams, (req, res, next) => {
     const newEnvelope = {
         id: envelopeArray.length + 1,
@@ -53,3 +66,7 @@ app.post('/envelope', checkParams, (req, res, next) => {
 app.get('/envelope', (req, res, next) => {
     res.status(200).send(envelopeArray);
 })
+
+app.get('/envelope/:id', checkIndex, (req, res, next) => {
+    res.status(200).send(envelopeArray[req.index]);
+});
