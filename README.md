@@ -10,5 +10,5 @@
     <p>This deletes the envelope with the corresponding id from the database</p>
 <h3>PUT '/envelope/:id'</h3>
     <p>This takes upto two query values, being category(string) and budget(number) and updates the envelope with the corresponding id number</p>
-<h3>PUT '/envelope/:id/:id2</h3>
+<h3>PUT '/envelope/:id/:id2'</h3>
     <p>This moves all of the remaining budget in one envelope (id) to another (id2)</p>
