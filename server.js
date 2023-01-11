@@ -40,7 +40,6 @@ function checkParams (req, res, next) {
     }
 }
 
-//TO DO check for valid inputs and make sure no over budget
 app.post('/envelope', checkParams, (req, res, next) => {
     const newEnvelope = {
         id: envelopeArray.length + 1,
