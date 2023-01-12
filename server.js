@@ -24,6 +24,10 @@ app.get('/', (req, res, next) => {
     res.sendFile('index.html', {root: __dirname});
 })
 
+app.get('/envelopes', (req, res, next) => {
+    res.sendFile('envelopes.html', {root: __dirname});
+})
+
 function checkParams (req, res, next) {
     let categoryParam;
     let budgetParam;
