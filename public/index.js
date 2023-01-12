@@ -8,9 +8,6 @@ async function sendFormData(event) {
       "Content-Type": "application/json",
     },
   });
-  if (response.ok) {
-    console.log(`Everything worked`);
-  }
 }
 
 const post_form = document.getElementById("post_envelope");
@@ -24,7 +21,13 @@ const log = document.getElementById("log");
 async function getAllEnvelopes (event){
   const response = await fetch ("/envelope");
   if (response.ok) {
-    log.textContent = JSON.parse(response);
+    const responseObject = await response.json();
+    console.log(responseObject);
+    let string = '';
+    for (let i = 0; i < responseObject.length; i++) {
+      string += `<p>Envelope ${responseObject[i].id}: Category - ${responseObject[i].category} Budget - ${responseObject[i].budget}</p>\n<br>`;
+    }
+    log.innerHTML = string;
   }
 }
 
