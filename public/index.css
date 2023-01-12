@@ -6,10 +6,14 @@
     padding: 0;
 }
 
+html {
+    background-color: azure;
+}
+
 #heading {
     display: flex;
     justify-content: flex-start;
-    background-color: blue;
+    background-color: cornflowerblue;
     height: 10vh;
     width: 60vw;
     align-items: center;
@@ -20,7 +24,7 @@
 }
 
 #heading header {
-    background-color: blue;
+    background-color: cornflowerblue;
     color: white;
     font-weight: bold;
     font-size: 25px;
@@ -32,4 +36,25 @@
     width: 60vw;
     margin-left: 20vw;
     margin-right: 20vw;
+    height: 60vh;
+    border-radius: 2vh;
+    background-color: cornflowerblue;
+    margin-top: 2vh;
+}
+
+#body * {
+    background-color: cornflowerblue;
+    padding-top: 1vh;
+}
+
+#button {
+    background-color: white;
+    border-radius: 1vh;
+    text-decoration: solid;
+    color: black;
+    font-weight: bold;
+    border: 1px, solid, white;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+    margin-top: 4vh;
 }
