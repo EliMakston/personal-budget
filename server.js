@@ -24,6 +24,14 @@ app.get('/', (req, res, next) => {
     res.sendFile('index.html', {root: __dirname});
 })
 
+app.get('budget', (req, res, next) => {
+    const budgetObject = {
+        totalBudget: totalBudget,
+        budgetLeft: budgetLeft
+    }
+    res.status(200).send(budgetObject);
+})
+
 function checkParams (req, res, next) {
     let categoryParam;
     let budgetParam;
