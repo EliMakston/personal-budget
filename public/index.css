@@ -52,3 +52,11 @@
     border: 2px solid white;
     margin-top: 1vh;
 }
+
+#id_form {
+    display: inline;
+}
+
+input {
+    border-color: white;
+}

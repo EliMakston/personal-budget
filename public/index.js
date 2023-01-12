@@ -25,7 +25,7 @@ async function getAllEnvelopes (event){
     console.log(responseObject);
     let string = '';
     for (let i = 0; i < responseObject.length; i++) {
-      string += `<p>Envelope ${responseObject[i].id}: Category - ${responseObject[i].category} Budget - ${responseObject[i].budget}</p>\n<br>`;
+      string += `<p>Envelope ${responseObject[i].id}: Category - ${responseObject[i].category}, Budget - ${responseObject[i].budget}</p>\n<br>`;
     }
     log.innerHTML = string;
   }
