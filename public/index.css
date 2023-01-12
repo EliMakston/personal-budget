@@ -1,19 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 * {
     font-family: Inter, style-sans;
-    background-color: azure;
+    background-color: rgb(30,30,30);
     margin: 0;
     padding: 0;
-}
-
-html {
-    background-color: azure;
 }
 
 #heading {
     display: flex;
     justify-content: flex-start;
-    background-color: cornflowerblue;
     height: 10vh;
     width: 60vw;
     align-items: center;
@@ -24,11 +19,9 @@ html {
 }
 
 #heading header {
-    background-color: cornflowerblue;
     color: white;
     font-weight: bold;
     font-size: 25px;
-    padding: 1vw;
     border-radius: 50%;
 }
 
@@ -38,23 +31,24 @@ html {
     margin-right: 20vw;
     height: 60vh;
     border-radius: 2vh;
-    background-color: cornflowerblue;
     margin-top: 2vh;
 }
 
 #body * {
-    background-color: cornflowerblue;
+    color: white;
     padding-top: 1vh;
 }
 
 #button {
-    background-color: white;
     border-radius: 1vh;
-    text-decoration: solid;
-    color: black;
+    color: white;
     font-weight: bold;
     border: 1px, solid, white;
     margin-bottom: 1vh;
-    margin-left: 2vw;
     margin-top: 4vh;
+}
+
+#get_envelope {
+    border: 2px solid white;
+    margin-top: 1vh;
 }

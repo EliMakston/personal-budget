@@ -9,12 +9,23 @@ async function sendFormData(event) {
     },
   });
   if (response.ok) {
-    log.textContent = `Form submitted and envelope made!`;
+    console.log(`Everything worked`);
   }
 }
 
-const form = document.querySelector("form");
-const log = document.querySelector(".log");
-if (form) {
-  form.addEventListener('submit', sendFormData);
+const post_form = document.getElementById("post_envelope");
+if (post_form) {
+  post_form.addEventListener('submit', sendFormData);
 }
+
+const get_button = document.getElementById("get_envelope");
+const log = document.getElementById("log");
+
+async function getAllEnvelopes (event){
+  const response = await fetch ("/envelope");
+  if (response.ok) {
+    log.textContent = JSON.parse(response);
+  }
+}
+
+get_button.addEventListener("click", getAllEnvelopes);

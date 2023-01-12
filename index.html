@@ -8,16 +8,23 @@
         <header>Envelope Budgeter</header>
     </div>
     <div id="body">
-        <a href="https://elimakston-psychic-bassoon-q6r54gggxvrf4rx6-3000.preview.app.github.dev/envelopes" id="button">All Envelopes</a>
         <p>Create an envelope:</p>
-        <form id="form" class="form">
+        <form id="post_envelope" class="form">
             <label for="category">Category:</label>
             <input type="text" id="category" name="category"><br>
             <label for="budget">Budget:</label>
             <input type="text" id="budget" name="budget"><br>
             <input type="submit">
         </form>
-        <p id="log" class="log"></p>
+        <div id="envelopes">
+            <button id="get_envelope">All Envelopes</button>
+            <form id="id_form">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id">
+                <input type="submit">
+            </form>
+            <p id="log">Envelopes go here</p>
+        </div>
     </div>
     <script src="index.js" type="text/javascript"></script>
 </html>
