@@ -1,8 +1,10 @@
 function logSubmit(event) {
     log.textContent = `Form Submitted! Timestamp: ${event.timeStamp}`;
     event.preventDefault();
-  }
-  
-  const form = document.getElementById('form');
-  const log = document.getElementById('log');
+}
+
+const form = document.querySelector(".form");
+const log = document.querySelector(".log");
+if (form) {
   form.addEventListener('submit', logSubmit);
+}
