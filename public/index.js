@@ -8,6 +8,7 @@ async function sendFormData(event) {
       "Content-Type": "application/json",
     },
   });
+  getAllEnvelopes(event);
 }
 
 const post_form = document.getElementById("post_envelope");
