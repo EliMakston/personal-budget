@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
+const path = require('path');
+
+app.use(express.static(path.join(__dirname,'public')));
 
 const PORT = process.env.PORT || 3000;
 
@@ -9,6 +12,7 @@ const envelopeArray = [];
 let totalBudget = 5000;
 let budgetLeft = 5000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
@@ -17,15 +21,35 @@ app.listen(PORT, () => {
 })
 
 app.get('/', (req, res, next) => {
-    res.status(200).send('Hello, World')
+    res.sendFile('index.html', {root: __dirname});
+})
+
+app.get('budget', (req, res, next) => {
+    const budgetObject = {
+        totalBudget: totalBudget,
+        budgetLeft: budgetLeft
+    }
+    res.status(200).send(budgetObject);
 })
 
 function checkParams (req, res, next) {
+    let categoryParam;
+    let budgetParam;
+    let isBody = false;
     if (!req.query.hasOwnProperty('category') || !req.query.hasOwnProperty('budget')) {
-        res.status(400).send('Missing parameter');
+        if (!req.body.hasOwnProperty('category') || !req.body.hasOwnProperty('budget')) {
+            res.status(400).send('Missing parameter');
+        } else {
+            isBody = true;
+        }
     }
-    const categoryParam = req.query.category;
-    const budgetParam = Number(req.query.budget);
+    if (!isBody) {
+        categoryParam = req.query.category;
+        budgetParam = Number(req.query.budget);
+    } else {
+        categoryParam = req.body.category;
+        budgetParam = Number(req.body.budget);
+    }
     if (categoryParam.length === 0 || budgetParam.length === 0) {
         res.status(400).send('Missing parameter');
     } else {

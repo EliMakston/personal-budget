@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Envelope Budgeter</title>
+        <link href="index.css" rel="stylesheet">
+    </head>
+    <div id="heading">
+        <header>Envelope Budgeter</header>
+    </div>
+    <div id="body">
+        <p>Create an envelope:</p>
+        <form id="post_envelope" class="form">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category"><br>
+            <label for="budget">Budget:</label>
+            <input type="text" id="budget" name="budget"><br>
+            <input type="submit">
+        </form>
+        <div id="envelopes">
+            <form id="id_form">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id">
+                <input type="submit">
+            </form>
+            <button id="get_envelope">All Envelopes</button>
+            <div id="log">
+                Envelopes go here
+            </div>
+        </div>
+    </div>
+    <script src="index.js" type="text/javascript"></script>
+</html>

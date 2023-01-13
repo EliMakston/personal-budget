@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+* {
+    font-family: Inter, style-sans;
+    background-color: rgb(30,30,30);
+    margin: 0;
+    padding: 0;
+}
+
+#heading {
+    display: flex;
+    justify-content: flex-start;
+    height: 10vh;
+    width: 60vw;
+    align-items: center;
+    border-radius: 2vh;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-top: 2vh;
+}
+
+#heading header {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 50%;
+}
+
+#body{
+    width: 60vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    height: 60vh;
+    border-radius: 2vh;
+    margin-top: 2vh;
+}
+
+#body * {
+    color: white;
+    padding-top: 1vh;
+}
+
+#button {
+    border-radius: 1vh;
+    color: white;
+    font-weight: bold;
+    border: 1px, solid, white;
+    margin-bottom: 1vh;
+    margin-top: 4vh;
+}
+
+#get_envelope {
+    border: 2px solid white;
+    margin-top: 1vh;
+}
+
+#id_form {
+    display: inline;
+}
+
+input {
+    border-color: white;
+}
