@@ -22,7 +22,6 @@ async function getAllEnvelopes (event){
   const response = await fetch ("/envelope");
   if (response.ok) {
     const responseObject = await response.json();
-    console.log(responseObject);
     let string = '';
     for (let i = 0; i < responseObject.length; i++) {
       string += `<p>Envelope ${responseObject[i].id}: Category - ${responseObject[i].category}, Budget - ${responseObject[i].budget}</p>\n<br>`;
@@ -32,3 +31,20 @@ async function getAllEnvelopes (event){
 }
 
 get_button.addEventListener("click", getAllEnvelopes);
+
+const id_form = document.getElementById('id_form');
+
+async function getIdEnvelope (event){
+  event.preventDefault();
+  const formData = Object.fromEntries(new FormData(event.target).entries());
+  const thisId = formData.id;
+  const response = await fetch(`/envelope/${thisId}`);
+  if (response.ok) {
+    const responseObject = await response.json();
+    let string = '';
+    string += `<p>Envelope ${responseObject.id}: Category - ${responseObject.category}, Budget - ${responseObject.budget}</p>\n<br>`;
+    log.innerHTML = string;
+  }
+}
+
+id_form.addEventListener('submit', getIdEnvelope);
